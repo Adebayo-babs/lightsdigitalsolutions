@@ -151,7 +151,7 @@ export default function Footer() {
               💬 WhatsApp Us
             </a>
             <span className="text-sm text-white/45">📍 Ikeja, Lagos State</span>
-            <span className="text-sm text-white/45">🌐 www.lightsdigitalsolutions.com</span>
+            <span className="text-sm text-white/45">www.lightsdigitalsolutions.com</span>
           </div>
         </div>
       </div>

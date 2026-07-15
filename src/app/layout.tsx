@@ -21,6 +21,7 @@ const BASE_URL = "https://www.lightsdigitalsolutions.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
+  manifest: "/site.webmanifest",
   title: {
     default: "Lights Digital Solutions — Digital Transformation Experts",
     template: "%s",

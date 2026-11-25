@@ -45,10 +45,10 @@ export default function ContactPage() {
                   href={option.href}
                   target={option.external ? "_blank" : undefined}
                   rel={option.external ? "noopener noreferrer" : undefined}
-                  className="flex items-start justify-between gap-5 border-b border-border py-4 transition-colors hover:text-secondary"
+                  className="flex min-w-0 items-start justify-between gap-5 border-b border-border py-4 transition-colors hover:text-secondary max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-1"
                 >
-                  <span className="text-sm text-text-muted">{option.label}</span>
-                  <span className="text-right text-sm font-medium text-text">{option.value}</span>
+                  <span className="shrink-0 text-sm text-text-muted">{option.label}</span>
+                  <span className="min-w-0 text-right text-sm font-medium text-text [overflow-wrap:anywhere] max-[360px]:text-left">{option.value}</span>
                 </a>
               ))}
             </div>

@@ -107,6 +107,16 @@ body {
   border-color: var(--secondary);
 }
 
+.header-project-link {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .header-project-link {
+    display: inline-flex;
+  }
+}
+
 .button-primary:active,
 .button-secondary:active {
   transform: scale(0.98);

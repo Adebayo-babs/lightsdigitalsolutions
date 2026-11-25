@@ -51,7 +51,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-md border border-border text-text md:hidden"
+          className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-md border border-border text-text lg:hidden"
           onClick={() => setMenuOpen((value) => !value)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
@@ -66,14 +66,14 @@ export default function Header() {
           id="primary-links"
           className={`${
             menuOpen ? "flex" : "hidden"
-          } absolute inset-x-0 top-full flex-col gap-1 border-b border-border bg-white px-6 py-4 shadow-sm md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
+          } absolute inset-x-0 top-full flex-col gap-1 border-b border-border bg-white px-6 py-4 shadow-sm lg:static lg:flex lg:flex-row lg:items-center lg:gap-8 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none`}
         >
           {navLinks.map((link) =>
             link.children ? (
               <li key={link.href} className="group relative">
                 <button
                   type="button"
-                  className="flex min-h-10 items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-secondary md:min-h-9"
+                  className="flex min-h-10 items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-secondary lg:min-h-9"
                   onClick={() => setMobileSubOpen((value) => !value)}
                   aria-expanded={mobileSubOpen}
                   aria-haspopup="true"
@@ -81,7 +81,7 @@ export default function Header() {
                   {link.label}
                   <svg
                     viewBox="0 0 12 12"
-                    className={`h-3 w-3 transition-transform duration-150 md:group-hover:rotate-180 ${
+                    className={`h-3 w-3 transition-transform duration-150 lg:group-hover:rotate-180 ${
                       mobileSubOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -93,7 +93,7 @@ export default function Header() {
                   </svg>
                 </button>
 
-                <div className="invisible absolute left-0 top-full z-20 hidden min-w-40 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 md:block">
+                <div className="invisible absolute left-0 top-full z-20 hidden min-w-40 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 lg:block">
                   <div className="rounded-lg border border-border bg-white py-1 shadow-[0_8px_24px_rgba(32,31,27,0.08)]">
                     {link.children.map((child) => (
                       <Link
@@ -109,7 +109,7 @@ export default function Header() {
                 </div>
 
                 <div
-                  className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-150 md:hidden ${
+                  className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-150 lg:hidden ${
                     mobileSubOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
@@ -132,7 +132,7 @@ export default function Header() {
                 <Link
                   href={link.href}
                   onClick={closeMenu}
-                  className="flex min-h-10 items-center text-sm font-medium text-text-muted transition-colors hover:text-secondary md:min-h-9"
+                  className="flex min-h-10 items-center text-sm font-medium text-text-muted transition-colors hover:text-secondary lg:min-h-9"
                 >
                   {link.label}
                 </Link>
@@ -141,7 +141,7 @@ export default function Header() {
           )}
         </ul>
 
-        <Link href="/contact" className="button-primary hidden min-h-10 px-4 text-sm md:inline-flex">
+        <Link href="/contact" className="button-primary header-project-link min-h-10 px-4 text-sm">
           Start a project
         </Link>
       </div>

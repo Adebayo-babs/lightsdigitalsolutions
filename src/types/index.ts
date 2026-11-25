@@ -16,7 +16,6 @@ export interface CaseStudy {
 }
 
 export interface ServiceItem {
-  icon: string;
   title: string;
   description: string;
   proofLabel?: string;

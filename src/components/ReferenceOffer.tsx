@@ -1,36 +1,37 @@
 export default function ReferenceOffer() {
   return (
-    <section className="bg-white pt-35 md:pt-40 pb-10 px-6 md:px-15">
-      <div className="text-center">
-        <div className="text-xs font-bold tracking-[3px] uppercase text-secondary mb-3.5">Client Reviews</div>
-        <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-black mb-4.5">
-          Ask Before You Hire.
-          <br />
-          We Encourage It.
-        </h2>
-        <p className="text-[17px] text-text-muted leading-relaxed max-w-140 mx-auto mb-10">
-          We&apos;re not going to fill this page with quotes you can&apos;t verify. Here&apos;s something more useful.
-        </p>
-      </div>
+    <section className="bg-white pt-32 pb-16 md:pt-40 md:pb-20">
+      <div className="site-container">
+        <div className="max-w-3xl">
+          <p className="eyebrow mb-3">Client references</p>
+          <h1 className="font-display text-[clamp(40px,5.4vw,68px)] font-normal leading-[1.02] tracking-[-0.035em] text-black">
+            Ask before you hire
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-text-muted">
+            Rather than publish quotes you can&apos;t verify, we&apos;ll connect you with a past client who has worked on a similar project.
+          </p>
+        </div>
 
-      <div className="max-w-160 mx-auto text-center bg-surface border-[1.5px] border-border rounded-[20px] p-9 md:p-12">
-        <div className="text-4xl mb-4">☎️</div>
-        <h3 className="font-display text-xl md:text-2xl font-extrabold text-black mb-3">
-          Want to talk to a past client directly?
-        </h3>
-        <p className="text-[15px] text-text-muted leading-relaxed mb-6">
-          Tell us which kind of project you&apos;re considering — e-commerce, an Android app, an internal system —
-          and we&apos;ll connect you with a client who&apos;s had one built, so you can ask them yourself how the
-          process went. No script, no filter.
-        </p>
-        <a
-          href="https://wa.me/2348165798543?text=Hi%2C%20I'd%20like%20to%20be%20connected%20with%20a%20past%20client%20as%20a%20reference."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-secondary hover:bg-primary text-white px-7.5 py-3.5 rounded-[10px] font-bold text-[15px] shadow-[0_4px_20px_rgba(0,67,255,0.25)] hover:-translate-y-0.5 transition-all"
-        >
-          Request a Reference →
-        </a>
+        <div className="mt-12 grid gap-8 border-t border-border pt-7 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-text-muted">A direct conversation, in their own words</p>
+            <h2 className="mt-3 font-display text-3xl font-normal leading-tight text-black">
+              Want to speak with a past client?
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-text-muted">
+              Tell us what you&apos;re considering—an online store, a mobile app, or an internal system—and we&apos;ll find a relevant reference where possible.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/2348165798543?text=Hi%2C%20I'd%20like%20to%20be%20connected%20with%20a%20past%20client%20as%20a%20reference."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-primary"
+          >
+            Request a reference
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   );

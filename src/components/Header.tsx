@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import BrandMark from "@/components/BrandMark";
 
 interface NavChild {
   href: string;
@@ -31,124 +31,120 @@ const navLinks: NavItem[] = [
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileSubOpen, setMobileSubOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setMobileSubOpen(false);
+  };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-100 flex items-center justify-between h-[72px] px-6 md:px-15 bg-white/92 backdrop-blur-xl border-b border-border transition-shadow ${
-        scrolled ? "shadow-[0_4px_24px_rgba(0,67,255,0.08)]" : ""
-      }`}
+      aria-label="Primary navigation"
+      className="fixed inset-x-0 top-0 z-50 border-b border-border bg-white/95"
     >
-      <Link href="/" className="flex items-center gap-2.5 z-10">
-        <Image
-          src="/images/logo.png"
-          alt="Lights Digital Solutions"
-          width={140}
-          height={40}
-          style={{ height: "auto" }}
-          className="w-[110px] md:w-[140px]"
-          priority
-        />
-      </Link>
+      <div className="site-container flex h-[72px] items-center justify-between gap-6">
+        <Link href="/" onClick={closeMenu} className="relative z-10 inline-flex items-center">
+          <BrandMark />
+        </Link>
 
-      <button
-        className="md:hidden text-secondary text-3xl z-10"
-        onClick={() => setMenuOpen((v) => !v)}
-        aria-label="Toggle menu"
-        aria-expanded={menuOpen}
-      >
-        ☰
-      </button>
+        <button
+          type="button"
+          className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-md border border-border text-text md:hidden"
+          onClick={() => setMenuOpen((value) => !value)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="primary-links"
+        >
+          <span className="h-px w-4 bg-current" />
+          <span className="h-px w-4 bg-current" />
+          <span className="h-px w-4 bg-current" />
+        </button>
 
-      <ul
-        className={`${
-          menuOpen ? "flex" : "hidden"
-        } md:flex absolute md:static top-[70px] left-0 right-0 md:top-auto flex-col md:flex-row gap-5 md:gap-8 bg-white md:bg-transparent p-6 md:p-0 border-b md:border-0 border-border shadow-[0_12px_30px_rgba(0,0,0,0.08)] md:shadow-none list-none`}
-      >
-        {navLinks.map((link) =>
-          link.children ? (
-            <li key={link.href} className="group relative">
-              <button
-                className="flex items-center gap-1 text-text-muted hover:text-secondary text-sm font-medium transition-colors md:cursor-default"
-                onClick={() => setMobileSubOpen((v) => !v)}
-                aria-expanded={mobileSubOpen}
-              >
-                {link.label}
-                <svg
-                  viewBox="0 0 12 12"
-                  className={`w-3 h-3 transition-transform md:group-hover:rotate-180 ${
-                    mobileSubOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
+        <ul
+          id="primary-links"
+          className={`${
+            menuOpen ? "flex" : "hidden"
+          } absolute inset-x-0 top-full flex-col gap-1 border-b border-border bg-white px-6 py-4 shadow-sm md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
+        >
+          {navLinks.map((link) =>
+            link.children ? (
+              <li key={link.href} className="group relative">
+                <button
+                  type="button"
+                  className="flex min-h-10 items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-secondary md:min-h-9"
+                  onClick={() => setMobileSubOpen((value) => !value)}
+                  aria-expanded={mobileSubOpen}
+                  aria-haspopup="true"
                 >
-                  <path d="M2.5 4.5L6 8l3.5-3.5" />
-                </svg>
-              </button>
+                  {link.label}
+                  <svg
+                    viewBox="0 0 12 12"
+                    className={`h-3 w-3 transition-transform duration-150 md:group-hover:rotate-180 ${
+                      mobileSubOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M2.5 4.5L6 8l3.5-3.5" />
+                  </svg>
+                </button>
 
-              {/* Desktop dropdown */}
-              <div className="hidden md:block absolute top-full left-0 pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-150">
-                <div className="bg-white border border-border rounded-xl shadow-[0_16px_40px_rgba(0,67,255,0.12)] py-2 min-w-[160px]">
-                  {link.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="block px-4 py-2.5 text-sm text-text-muted hover:text-secondary hover:bg-surface transition-colors"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
+                <div className="invisible absolute left-0 top-full z-20 hidden min-w-40 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 md:block">
+                  <div className="rounded-lg border border-border bg-white py-1 shadow-[0_8px_24px_rgba(32,31,27,0.08)]">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={closeMenu}
+                        className="block px-4 py-2.5 text-sm text-text-muted transition-colors hover:bg-surface hover:text-secondary"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Mobile submenu */}
-              <div className={`md:hidden overflow-hidden transition-all ${mobileSubOpen ? "max-h-40 mt-2" : "max-h-0"}`}>
-                <div className="flex flex-col gap-3 pl-4 border-l-2 border-border">
-                  {link.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      onClick={() => {
-                        setMenuOpen(false);
-                        setMobileSubOpen(false);
-                      }}
-                      className="text-text-muted hover:text-secondary text-sm font-medium transition-colors"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
+                <div
+                  className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-150 md:hidden ${
+                    mobileSubOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="flex min-h-0 flex-col overflow-hidden border-l border-border pl-4">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={closeMenu}
+                        className="py-2 text-sm text-text-muted transition-colors hover:text-secondary"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </li>
-          ) : (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-text-muted hover:text-secondary text-sm font-medium transition-colors"
-              >
-                {link.label}
-              </Link>
-            </li>
-          )
-        )}
-      </ul>
+              </li>
+            ) : (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="flex min-h-10 items-center text-sm font-medium text-text-muted transition-colors hover:text-secondary md:min-h-9"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ),
+          )}
+        </ul>
 
-      <Link
-        href="/contact"
-        className="hidden md:inline-flex bg-secondary hover:bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all hover:-translate-y-0.5"
-      >
-        Get Started →
-      </Link>
+        <Link href="/contact" className="button-primary hidden min-h-10 px-4 text-sm md:inline-flex">
+          Start a project
+        </Link>
+      </div>
     </nav>
   );
 }

@@ -3,39 +3,43 @@ import { services } from "@/data/services";
 
 export default function ServicesGrid() {
   return (
-    <section className="bg-white py-28 md:py-25 px-6 md:px-15">
-      <div className="flex justify-between items-end flex-wrap gap-6 mb-14">
-        <div>
-          <div className="text-xs font-bold tracking-[3px] uppercase text-secondary mb-3.5">What We Do</div>
-          <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-black">
-            Engineering
-            <br />
-            Digital Excellence.
-          </h2>
-        </div>
-        <p className="text-[17px] text-text-muted leading-relaxed max-w-110">
-          From custom web platforms to powerful mobile apps — we build the digital systems your organization needs to thrive.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {services.map((s) => (
-          <div
-            key={s.title}
-            className="bg-white border-[1.5px] border-border rounded-2xl p-9 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,67,255,0.1)] hover:border-secondary/20 relative overflow-hidden"
-          >
-            <div className="w-13 h-13 bg-secondary/8 rounded-xl flex items-center justify-center text-2xl mb-5">
-              {s.icon}
-            </div>
-            <h3 className="font-display text-lg font-bold text-black mb-2.5">{s.title}</h3>
-            <p className="text-sm text-text-muted leading-relaxed">{s.description}</p>
-            {s.proofLabel && s.proofHref && (
-              <Link href={s.proofHref} className="inline-block mt-3.5 text-[13px] font-bold text-secondary hover:underline">
-                {s.proofLabel}
-              </Link>
-            )}
+    <section className="bg-white py-20 md:py-28">
+      <div className="site-container">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end lg:gap-16">
+          <div>
+            <p className="eyebrow mb-3">Services</p>
+            <h1 className="font-display text-[clamp(40px,5.4vw,68px)] font-normal leading-[1.02] tracking-[-0.035em] text-black">
+              Software shaped around your work
+            </h1>
           </div>
-        ))}
+          <p className="max-w-xl text-base leading-7 text-text-muted">
+            From websites and mobile apps to internal platforms, we build the digital systems your organization needs to operate with less friction.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-x-12 md:grid-cols-2">
+          {services.map((service, index) => (
+            <article key={service.title} className="border-t border-border py-6 md:py-7">
+              <div className="flex items-start gap-5">
+                <span className="pt-1 font-mono text-sm tabular-nums text-secondary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h2 className="font-display text-2xl font-normal text-black">{service.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-text-muted">{service.description}</p>
+                  {service.proofLabel && service.proofHref && (
+                    <Link
+                      href={service.proofHref}
+                      className="mt-3 inline-flex text-sm font-medium text-secondary underline-offset-4 hover:underline"
+                    >
+                      {service.proofLabel}
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

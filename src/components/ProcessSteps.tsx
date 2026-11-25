@@ -1,30 +1,31 @@
 const steps = [
-  { num: "01", title: "Discovery", body: "We deep-dive into your business goals, challenges, and target users to define the right solution." },
-  { num: "02", title: "Design", body: "We create wireframes and high-fidelity designs aligned with your brand before writing a single line of code." },
-  { num: "03", title: "Build", body: "Development happens with clean, scalable code — with continuous testing at every stage." },
-  { num: "04", title: "Launch", body: "We deploy your product with a smooth go-live plan and monitor performance closely post-launch." },
-  { num: "05", title: "Grow", body: "Ongoing support, updates, and feature additions keep your digital product evolving with your business." },
+  { num: "01", title: "Discovery", body: "We clarify your business goals, existing workflow, and the people the solution needs to serve." },
+  { num: "02", title: "Design", body: "We map the experience and agree on the direction before development begins." },
+  { num: "03", title: "Build", body: "Your product is developed in clear stages, with testing throughout." },
+  { num: "04", title: "Launch", body: "We prepare the release, deploy the product, and monitor it after go-live." },
+  { num: "05", title: "Support", body: "Updates and ongoing support help your product keep pace with the business." },
 ];
 
 export default function ProcessSteps() {
   return (
-    <section id="process" className="bg-primary py-20 md:py-25 px-6 md:px-15">
-      <div className="text-xs font-bold tracking-[3px] uppercase text-white/60 mb-3.5">How We Work</div>
-      <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-white mb-4.5">
-        Our Proven Process
-      </h2>
+    <section id="process" className="bg-white py-20 md:py-28">
+      <div className="site-container">
+        <div className="max-w-2xl">
+          <p className="eyebrow mb-3">How we work</p>
+          <h2 className="font-display text-[clamp(36px,5vw,60px)] font-normal leading-[1.04] tracking-[-0.03em] text-black">
+            A clear path from idea to release
+          </h2>
+        </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-0 mt-16 relative">
-        <div className="hidden lg:block absolute top-8 left-15 right-15 h-px bg-white/15" />
-        {steps.map((s) => (
-          <div key={s.num} className="text-center px-4 relative z-10">
-            <div className="w-16 h-16 rounded-full bg-white/12 border-2 border-white/25 flex items-center justify-center font-display text-xl font-extrabold text-white mx-auto mb-4.5">
-              {s.num}
-            </div>
-            <h4 className="font-display text-base font-bold text-white mb-2">{s.title}</h4>
-            <p className="text-[13px] text-white/65 leading-relaxed">{s.body}</p>
-          </div>
-        ))}
+        <ol className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
+          {steps.map((step) => (
+            <li key={step.num} className="border-t border-border pt-5">
+              <span className="font-mono text-sm tabular-nums text-secondary">{step.num}</span>
+              <h3 className="mt-5 font-display text-2xl font-normal text-black">{step.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-text-muted">{step.body}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

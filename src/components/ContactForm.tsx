@@ -49,20 +49,24 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-white border-[1.5px] border-border rounded-2xl p-10 text-center">
-        <div className="text-4xl mb-4">✅</div>
-        <h3 className="font-display text-xl font-extrabold text-black mb-2">Message sent</h3>
-        <p className="text-sm text-text-muted">
-          Thanks — this goes straight through. Expect a reply within 24 hours, or reach out on WhatsApp if it&apos;s urgent.
+      <div className="editorial-card p-8 text-center md:p-10">
+        <div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-full border border-secondary text-secondary">
+          <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path d="m4 10 4 4 8-8" />
+          </svg>
+        </div>
+        <h3 className="font-display text-2xl font-normal text-black">Message sent</h3>
+        <p className="mt-2 text-sm leading-6 text-text-muted">
+          Thank you for getting in touch. You can also reach us directly on WhatsApp if needed.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white border-[1.5px] border-border rounded-2xl p-7 md:p-9 flex flex-col gap-5">
+    <form onSubmit={handleSubmit} className="editorial-card flex flex-col gap-5 p-6 md:p-8">
       {!configured && (
-        <div className="bg-accent-yellow/15 border border-accent-yellow/40 text-[13px] text-black/80 rounded-lg px-4 py-3">
+        <div className="rounded-lg border border-accent-yellow/40 bg-accent-yellow/10 px-4 py-3 text-[13px] text-text">
           Form isn&apos;t wired up yet — set <code className="font-mono text-xs">NEXT_PUBLIC_FORMSPREE_ID</code> in your
           environment (free at formspree.io) to activate it. Until then it won&apos;t submit.
         </div>
@@ -70,7 +74,7 @@ export default function ContactForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="name" className="text-xs font-bold text-text uppercase tracking-wide">
+          <label htmlFor="name" className="text-sm font-medium text-text">
             Name
           </label>
           <input
@@ -78,12 +82,12 @@ export default function ContactForm() {
             name="name"
             type="text"
             required
-            className="border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+            className="min-h-11 rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-text placeholder:text-gray-mid focus:border-secondary focus:outline-none"
             placeholder="Your name"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-xs font-bold text-text uppercase tracking-wide">
+          <label htmlFor="email" className="text-sm font-medium text-text">
             Email
           </label>
           <input
@@ -91,20 +95,20 @@ export default function ContactForm() {
             name="email"
             type="email"
             required
-            className="border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+            className="min-h-11 rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-text placeholder:text-gray-mid focus:border-secondary focus:outline-none"
             placeholder="you@company.com"
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="projectType" className="text-xs font-bold text-text uppercase tracking-wide">
-          Project Type
+        <label htmlFor="projectType" className="text-sm font-medium text-text">
+          Project type
         </label>
         <select
           id="projectType"
           name="projectType"
-          className="border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15 bg-white"
+          className="min-h-11 rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-text focus:border-secondary focus:outline-none"
         >
           {projectTypes.map((t) => (
             <option key={t} value={t}>
@@ -115,20 +119,20 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="budget" className="text-xs font-bold text-text uppercase tracking-wide">
+        <label htmlFor="budget" className="text-sm font-medium text-text">
           Budget Range (optional)
         </label>
         <input
           id="budget"
           name="budget"
           type="text"
-          className="border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+          className="min-h-11 rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-text placeholder:text-gray-mid focus:border-secondary focus:outline-none"
           placeholder="e.g. ₦300,000 – ₦500,000"
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-xs font-bold text-text uppercase tracking-wide">
+        <label htmlFor="message" className="text-sm font-medium text-text">
           Tell us about the project
         </label>
         <textarea
@@ -136,7 +140,7 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
-          className="border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15 resize-none"
+          className="min-h-32 resize-y rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-text placeholder:text-gray-mid focus:border-secondary focus:outline-none"
           placeholder="What are you trying to build, and what problem is it solving?"
         />
       </div>
@@ -144,14 +148,14 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting" || !configured}
-        className="bg-secondary hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed text-white py-3.5 rounded-[10px] font-bold text-sm shadow-[0_4px_20px_rgba(0,67,255,0.25)] transition-all"
+        className="button-primary min-h-12 w-full disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {status === "submitting" ? "Sending…" : "Send Message →"}
+        {status === "submitting" ? "Sending…" : "Send message"}
       </button>
 
       {status === "error" && (
         <p className="text-sm text-red-600 text-center">
-          Something went wrong sending that — try again, or email{" "}
+          Something went wrong sending your message. Try again, or email{" "}
           <a href="mailto:lightsdigitalsolutions3@gmail.com" className="underline">
             lightsdigitalsolutions3@gmail.com
           </a>{" "}

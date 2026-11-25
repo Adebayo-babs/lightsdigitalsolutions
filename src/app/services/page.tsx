@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <div className="pt-18" />
       <ServicesGrid />
       <CTA />
     </>

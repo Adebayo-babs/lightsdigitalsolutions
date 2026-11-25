@@ -7,51 +7,52 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-white py-20 md:py-25 px-6 md:px-15">
-      <div className="max-w-180 mx-auto">
-        <div className="text-center mb-14">
-          <div className="text-xs font-bold tracking-[3px] uppercase text-secondary mb-3.5">
-            Questions
-          </div>
-          <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-black">
-            Before You Ask
+    <section id="faq" className="bg-white py-20 md:py-28">
+      <div className="site-container grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+        <div>
+          <p className="eyebrow mb-3">Questions</p>
+          <h2 className="font-display text-[clamp(36px,5vw,56px)] font-normal leading-[1.04] tracking-[-0.03em] text-black">
+            Before we begin
           </h2>
         </div>
 
-        <div className="flex flex-col gap-3">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
+        <div className="border-t border-border">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const answerId = `faq-answer-${index}`;
             return (
-              <div
-                key={faq.question}
-                className={`border-[1.5px] rounded-2xl overflow-hidden transition-colors ${
-                  isOpen ? "border-secondary/30 bg-surface" : "border-border bg-white"
-                }`}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between gap-4 text-left px-6 py-5"
-                >
-                  <span className="font-display text-[15.5px] font-bold text-black">{faq.question}</span>
-                  <span
-                    className={`shrink-0 w-7 h-7 rounded-full border-[1.5px] border-border flex items-center justify-center text-secondary transition-transform ${
-                      isOpen ? "rotate-45 border-secondary" : ""
-                    }`}
+              <article key={faq.question} className="border-b border-border">
+                <h3>
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                    aria-controls={answerId}
+                    className="flex w-full items-center justify-between gap-5 py-5 text-left"
                   >
-                    +
-                  </span>
-                </button>
+                    <span className="text-base font-medium text-text">{faq.question}</span>
+                    <svg
+                      viewBox="0 0 16 16"
+                      className={`h-4 w-4 shrink-0 text-secondary transition-transform duration-150 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M8 2v12M2 8h12" />
+                    </svg>
+                  </button>
+                </h3>
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  id={answerId}
+                  hidden={!isOpen}
+                  className="pb-5 pr-8 text-sm leading-6 text-text-muted"
                 >
-                  <div className="overflow-hidden">
-                    <p className="px-6 pb-5 text-sm text-text-muted leading-relaxed">{faq.answer}</p>
-                  </div>
+                  {faq.answer}
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

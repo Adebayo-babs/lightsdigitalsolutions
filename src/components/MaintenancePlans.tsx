@@ -3,74 +3,66 @@ import { maintenancePlans, pricingTerms } from "@/data/pricing";
 
 export default function MaintenancePlans() {
   return (
-    <section className="bg-surface py-20 md:py-25 px-6 md:px-15">
-      <div className="text-center mb-12 max-w-160 mx-auto">
-        <div className="text-xs font-bold tracking-[3px] uppercase text-secondary mb-3.5">
-          After Launch
+    <section className="bg-surface py-20 md:py-28">
+      <div className="site-container">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end lg:gap-16">
+          <div>
+            <p className="eyebrow mb-3">After launch</p>
+            <h2 className="font-display text-[clamp(38px,5vw,60px)] font-normal leading-[1.04] tracking-[-0.03em] text-black">
+              Support that keeps the work moving
+            </h2>
+          </div>
+          <p className="max-w-xl text-base leading-7 text-text-muted">
+            Every project includes a warranty period for launch-related bug fixes. These plans cover ongoing care beyond that period.
+          </p>
         </div>
-        <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-black mb-4.5">
-          Ongoing Support Plans
-        </h2>
-        <p className="text-[17px] text-text-muted leading-relaxed">
-          Every project includes a warranty period for bug fixes at launch. Beyond that, these plans keep things
-          running.
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-260 mx-auto items-start">
-        {maintenancePlans.map((plan) => (
-          <div
-            key={plan.key}
-            className={`relative bg-white rounded-2xl p-8 flex flex-col h-full transition-all hover:-translate-y-1 ${
-              plan.highlighted
-                ? "border-2 border-secondary shadow-[0_20px_50px_rgba(0,67,255,0.15)]"
-                : "border border-border shadow-sm hover:shadow-[0_16px_40px_rgba(0,67,255,0.08)]"
-            }`}
-          >
-            {plan.highlighted && (
-              <span className="absolute -top-3 left-8 bg-secondary text-white text-[10px] font-bold tracking-wide uppercase px-3 py-1 rounded-full">
-                Most Popular
-              </span>
-            )}
-            <h3 className="font-display text-lg font-extrabold text-black mb-1">{plan.name}</h3>
-            <div className="font-display text-3xl font-extrabold text-secondary mb-5">{plan.price}</div>
-            <ul className="flex flex-col gap-2.5 mb-7 flex-1">
-              {plan.features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5 text-sm text-text">
-                  <span className="text-secondary font-bold shrink-0 mt-0.5">✓</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/contact"
-              className={`text-center py-3 rounded-[10px] font-bold text-sm transition-all ${
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {maintenancePlans.map((plan) => (
+            <article
+              key={plan.key}
+              className={`flex h-full flex-col border-t-2 p-6 md:p-7 ${
                 plan.highlighted
-                  ? "bg-secondary hover:bg-primary text-white shadow-[0_4px_20px_rgba(0,67,255,0.25)]"
-                  : "border-[1.5px] border-border hover:border-secondary hover:text-secondary text-text"
+                  ? "border-secondary bg-white"
+                  : "border-border bg-white/60"
               }`}
             >
-              Get Started
-            </Link>
-          </div>
-        ))}
-      </div>
-      <p className="text-xs text-text-muted text-center mt-6">
-        Custom enterprise SLAs are available for hospitals, schools, and government platforms on request.
-      </p>
-
-      <div className="max-w-160 mx-auto mt-16 pt-10 border-t border-border">
-        <div className="text-xs font-bold tracking-[3px] uppercase text-secondary mb-5 text-center">
-          How Payment Works
-        </div>
-        <ul className="flex flex-col gap-3">
-          {pricingTerms.map((t) => (
-            <li key={t} className="flex items-start gap-2.5 text-sm text-text-muted leading-relaxed">
-              <span className="text-secondary font-bold shrink-0 mt-0.5">•</span>
-              <span>{t}</span>
-            </li>
+              <h3 className="font-display text-2xl font-normal text-black">{plan.name}</h3>
+              <p className="mt-3 font-display text-4xl font-normal tabular-nums text-text">{plan.price}</p>
+              <ul className="mt-6 flex flex-1 flex-col gap-3 border-t border-border pt-5">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm leading-6 text-text-muted">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/contact"
+                className={plan.highlighted ? "button-primary mt-7 w-full" : "button-secondary mt-7 w-full"}
+              >
+                Ask about this plan
+              </Link>
+            </article>
           ))}
-        </ul>
+        </div>
+        <p className="mt-5 text-sm text-text-muted">
+          Custom enterprise SLAs are available for hospitals, schools, and government platforms on request.
+        </p>
+
+        <div className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-[0.7fr_1.3fr]">
+          <h3 className="font-display text-3xl font-normal text-black">How payment works</h3>
+          <ol className="grid gap-4 sm:grid-cols-2">
+            {pricingTerms.map((term, index) => (
+              <li key={term} className="flex gap-4 border-t border-border pt-3">
+                <span className="font-mono text-xs tabular-nums text-secondary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-sm leading-6 text-text-muted">{term}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

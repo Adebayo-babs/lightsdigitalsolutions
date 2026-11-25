@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Bricolage_Grotesque } from "next/font/google";
+import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,13 +8,13 @@ import FloatingContactWidget from "@/components/FloatingContactWidget";
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const instrument = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400",
 });
 
 const BASE_URL = "https://www.lightsdigitalsolutions.com";
@@ -23,15 +23,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   manifest: "/site.webmanifest",
   title: {
-    default: "Lights Digital Solutions — Digital Transformation Experts",
+    default: "Lights Digital Solutions — Software for real work",
     template: "%s",
   },
   description:
-    "We build websites, mobile apps, and internal systems that replace manual work with something that just runs. Based in Lagos, Nigeria.",
+    "Websites, mobile apps, and operational software built around the way businesses work. Based in Ikeja, Lagos.",
   openGraph: {
     title: "Lights Digital Solutions",
     description:
-      "Websites, mobile apps, and internal systems that replace manual work with something that just runs.",
+      "Websites, mobile apps, and operational software built around the way businesses work.",
     url: BASE_URL,
     siteName: "Lights Digital Solutions",
     locale: "en_NG",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lights Digital Solutions",
     description:
-      "Websites, mobile apps, and internal systems that replace manual work with something that just runs.",
+      "Websites, mobile apps, and operational software built around the way businesses work.",
   },
 };
 
@@ -51,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${bricolage.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${instrument.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
         <Header />
         <main className="flex-1">{children}</main>

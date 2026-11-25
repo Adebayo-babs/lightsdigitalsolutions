@@ -13,50 +13,42 @@ export default function OpengraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background: "linear-gradient(135deg, #04269A 0%, #0043FF 100%)",
-          color: "white",
-          fontFamily: "sans-serif",
+          flexDirection: "row",
+          alignItems: "stretch",
+          padding: "72px",
+          background: "#fbf9f4",
+          color: "#201f1b",
+          fontFamily: "Georgia, serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            fontSize: 28,
-            fontWeight: 700,
-            letterSpacing: -0.5,
-            marginBottom: 40,
-            opacity: 0.9,
-          }}
-        >
-          ⚡ LIGHTS DIGITAL SOLUTIONS
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 64,
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: -1.5,
-            maxWidth: 900,
-          }}
-        >
-          We Build the Systems Your Business Runs On.
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 26,
-            marginTop: 32,
-            opacity: 0.85,
-            maxWidth: 780,
-          }}
-        >
-          Websites, mobile apps, and internal systems — Lagos, Nigeria
+        <div style={{ display: "flex", width: 8, background: "#1747c8", marginRight: 48 }} />
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              fontFamily: "Arial, sans-serif",
+              fontSize: 22,
+              fontWeight: 600,
+              color: "#1747c8",
+              marginBottom: 36,
+            }}
+          >
+            Lights Digital Solutions
+          </div>
+          <div style={{ display: "flex", fontSize: 66, lineHeight: 1.06, maxWidth: 930 }}>
+            Digital systems for the way your business works
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontFamily: "Arial, sans-serif",
+              fontSize: 22,
+              marginTop: 28,
+              color: "#66645e",
+            }}
+          >
+            Websites, mobile apps, and operational software · Lagos, Nigeria
+          </div>
         </div>
       </div>
     ),

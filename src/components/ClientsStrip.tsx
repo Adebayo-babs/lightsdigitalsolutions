@@ -1,24 +1,20 @@
-const provenOn = [
+const projects = [
   "ShopEase",
   "Trackzone Energy",
+  "Virtual Classroom",
   "MediTrack",
-  "Virtual Classroom Platform",
 ];
-
-const techStack = ["React", "Next.js", "Node.js", "PostgreSQL", "Paystack", "Flutter", "Firebase"];
 
 export default function ClientsStrip() {
   return (
-    <div className="bg-surface py-9 px-6 md:px-15 border-y border-border flex flex-col gap-6">
-      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0 overflow-hidden">
-        <div className="text-xs font-bold text-text-muted tracking-wider uppercase whitespace-nowrap sm:pr-10 sm:border-r border-border sm:mr-10 shrink-0">
-          Proven On Real Projects
-        </div>
-        <div className="flex flex-wrap justify-center sm:justify-start gap-8 sm:gap-12">
-          {provenOn.map((c) => (
-            <div key={c} className="font-display text-sm font-extrabold text-gray-mid tracking-tight whitespace-nowrap">
-              {c}
-            </div>
+    <div className="border-y border-border bg-surface py-7">
+      <div className="site-container flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-10">
+        <p className="shrink-0 text-sm font-medium text-text-muted">Selected work</p>
+        <div className="flex flex-wrap gap-x-8 gap-y-3 sm:gap-x-10">
+          {projects.map((project) => (
+            <span key={project} className="font-display text-lg text-text">
+              {project}
+            </span>
           ))}
         </div>
       </div>

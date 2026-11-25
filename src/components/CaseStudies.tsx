@@ -4,98 +4,97 @@ import { caseStudies } from "@/data/caseStudies";
 
 export default function CaseStudies() {
   return (
-    <section id="case-studies" className="bg-surface py-20 md:py-25 px-6 md:px-15">
-      <div className="text-xs font-bold tracking-[3px] uppercase text-secondary mb-3.5">
-        Proof, Not Promises
-      </div>
-      <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-black mb-4.5">
-        Real Projects.
-        <br />
-        Real Problems Solved.
-      </h2>
-      <p className="text-[17px] text-text-muted leading-relaxed max-w-140">
-        No stock photos, no invented case studies. Here&apos;s actual work you can click into and use right now.
-      </p>
+    <section id="case-studies" className="bg-surface py-20 md:py-28">
+      <div className="site-container">
+        <div className="max-w-2xl">
+          <p className="eyebrow mb-3">Selected work</p>
+          <h2 className="font-display text-[clamp(36px,5vw,60px)] font-normal leading-[1.04] tracking-[-0.03em] text-black">
+            Products built for the work behind the business
+          </h2>
+          <p className="mt-5 max-w-xl text-base leading-7 text-text-muted">
+            Explore the project examples and the practical problems behind them. Each case study explains its context, build, and current status.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mt-14">
-        {caseStudies.map((cs) => (
-          <article
-            key={cs.slug}
-            className="bg-white border border-border rounded-2xl overflow-hidden flex flex-col shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,67,255,0.12)] hover:border-secondary/25"
-          >
-            {/* Image — full width, always on top, no nested frames shrinking it down */}
-            <div
-              className={`relative w-full ${
-                cs.kind === "mobile" ? "aspect-[16/10]" : "aspect-video"
-              } bg-gray-100`}
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+          {caseStudies.map((study, index) => (
+            <article
+              key={study.slug}
+              className={`group overflow-hidden rounded-xl border border-border bg-white ${
+                index === 0 ? "lg:col-span-2 lg:grid lg:grid-cols-[1.15fr_0.85fr]" : ""
+              }`}
             >
-              <Image
-                src={cs.image}
-                alt={cs.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className={cs.kind === "mobile" ? "object-cover object-top" : "object-cover object-top"}
-              />
-            </div>
-
-            <div className="p-6 md:p-7 flex flex-col gap-3 flex-1">
-              <span
-                className={`inline-block self-start px-2.5 py-1 rounded text-[10px] font-bold tracking-wide uppercase ${
-                  cs.kind === "mobile" ? "bg-[#7C3AED]/8 text-[#7C3AED]" : "bg-secondary/8 text-secondary"
+              <div
+                className={`relative w-full overflow-hidden bg-gray-light ${
+                  index === 0 ? "aspect-[16/9] lg:aspect-auto lg:min-h-[380px]" : "aspect-[16/10]"
                 }`}
               >
-                {cs.tagLabel}
-              </span>
-              <h3 className="font-display text-xl font-extrabold text-black -mt-1">{cs.title}</h3>
+                <Image
+                  src={study.image}
+                  alt={study.title}
+                  fill
+                  sizes={index === 0 ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 1024px) 100vw, 50vw"}
+                  className={`${
+                    study.kind === "mobile" ? "object-contain p-6" : "object-cover object-top"
+                  }`}
+                />
+              </div>
 
-              <div>
-                <span className="text-[10px] font-bold tracking-wide uppercase text-secondary">The problem</span>
-                <p className="text-[13.5px] text-text-muted leading-relaxed mt-0.5">{cs.problem}</p>
-              </div>
-              <div>
-                <span className="text-[10px] font-bold tracking-wide uppercase text-secondary">What we built</span>
-                <p className="text-[13.5px] text-text-muted leading-relaxed mt-0.5">{cs.solution}</p>
-              </div>
-              {cs.result && (
-                <div>
-                  <span className="text-[10px] font-bold tracking-wide uppercase text-secondary">The result</span>
-                  <p className="text-[13.5px] text-text-muted leading-relaxed mt-0.5">{cs.result}</p>
+              <div className="flex flex-col p-6 md:p-8">
+                <p className="text-sm text-text-muted">{study.tagLabel}</p>
+                <h3 className="mt-2 font-display text-3xl font-normal leading-tight text-black">
+                  {study.title}
+                </h3>
+                <div className="mt-6 grid gap-4">
+                  <div>
+                    <p className="text-xs font-semibold text-secondary">The problem</p>
+                    <p className="mt-1 text-sm leading-6 text-text-muted">{study.problem}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-secondary">What we built</p>
+                    <p className="mt-1 text-sm leading-6 text-text-muted">{study.solution}</p>
+                  </div>
+                  {study.result && (
+                    <div>
+                      <p className="text-xs font-semibold text-secondary">The result</p>
+                      <p className="mt-1 text-sm leading-6 text-text-muted">{study.result}</p>
+                    </div>
+                  )}
                 </div>
-              )}
 
-              <div className="flex gap-1.5 flex-wrap mt-1">
-                {cs.tech.map((t) => (
-                  <span key={t} className="text-[11px] px-2.5 py-0.5 rounded-full border border-border text-text-muted bg-surface">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-auto pt-2 flex items-center gap-4 flex-wrap">
-                {cs.liveUrl ? (
-                  <a
-                    href={cs.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-bold text-secondary hover:underline"
+                <p className="mt-5 border-t border-border pt-4 text-xs leading-5 text-text-muted">
+                  <span className="font-medium text-text">Built with</span> {study.tech.join(" · ")}
+                </p>
+                <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+                  {study.liveUrl ? (
+                    <a
+                      href={study.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-secondary underline-offset-4 hover:underline"
+                    >
+                      View live project
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  ) : (
+                    <span className="text-sm text-text-muted">{study.statusLabel}</span>
+                  )}
+                  <Link
+                    href={`/work/${study.slug}`}
+                    className="text-sm font-medium text-text-muted underline-offset-4 transition-colors hover:text-secondary hover:underline"
                   >
-                    View live project ↗
-                  </a>
-                ) : (
-                  <span className="text-sm font-semibold text-gray-mid">{cs.statusLabel}</span>
-                )}
-                <Link href={`/work/${cs.slug}`} className="text-sm font-semibold text-text-muted hover:text-secondary transition-colors">
-                  Full case study →
-                </Link>
+                    Read case study
+                  </Link>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
 
-      {/* Honest, ready-to-fill trust slot. Replace with 2-3 REAL client quotes once collected. */}
-      <div className="mt-8 text-center text-sm text-text-muted bg-white border-[1.5px] border-dashed border-border rounded-2xl p-5">
-        <strong className="text-black">Working on something similar?</strong> Ask us — we&apos;re happy to point you to a project close to what you need.
+        <div className="mt-8 border-l-2 border-secondary pl-5 text-sm leading-6 text-text-muted">
+          <strong className="font-semibold text-text">Considering a similar build?</strong>{" "}
+          <span>Ask us to point you to a project close to your needs.</span>
+        </div>
       </div>
     </section>
   );

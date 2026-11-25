@@ -14,14 +14,16 @@ export default function TestimonialsPage() {
     <>
       <ReferenceOffer />
       <Guarantee />
-      <section className="text-center px-6 pb-20 flex flex-col items-center gap-4.5">
-        <p className="text-[15px] text-text-muted">In the meantime, you can see exactly what&apos;s been built and click into it yourself.</p>
-        <Link
-          href="/#case-studies"
-          className="inline-flex items-center gap-2 border-[1.5px] border-border hover:border-secondary hover:text-secondary text-text px-7.5 py-3.5 rounded-[10px] font-semibold text-[15px] hover:-translate-y-0.5 transition-all"
-        >
-          View Real Projects ↗
-        </Link>
+      <section className="bg-white pb-20">
+        <div className="site-container flex flex-col items-start gap-4 border-t border-border pt-6">
+          <p className="text-sm text-text-muted">
+            Explore the products that have already been built and click into them yourself.
+          </p>
+          <Link href="/#case-studies" className="button-secondary">
+            View selected projects
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
       </section>
       <CTA />
     </>
